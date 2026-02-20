@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@sentry/nextjs": "^10.39.0",
     "@supabase/supabase-js": "^2.96.0",
     "@vercel/analytics": "^1.6.1",
     "next": "16.1.6",
