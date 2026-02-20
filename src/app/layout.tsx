@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const metadataBase =
@@ -41,6 +41,10 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
 
+        {/* Vercel Web Analytics */}
+        <Analytics />
+
+        {/* Plausible Analytics (optional, only if env var exists) */}
         {plausibleDomain ? (
           <Script
             defer
@@ -48,8 +52,6 @@ export default function RootLayout({
             src="https://plausible.io/js/script.js"
           />
         ) : null}
-
-        <Analytics />
       </body>
     </html>
   );
