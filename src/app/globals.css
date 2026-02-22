@@ -1,5 +1,53 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Baloo";
+  src: url("/fonts/Baloo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baloo 2";
+  src: url("/fonts/Baloo2-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baloo 2";
+  src: url("/fonts/Baloo2-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baloo 2";
+  src: url("/fonts/Baloo2-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baloo 2";
+  src: url("/fonts/Baloo2-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Baloo 2";
+  src: url("/fonts/Baloo2-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #f2f3f4;
   --foreground: #22222a;
@@ -8,8 +56,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans:
-    "Open Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Open Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-brand: "Baloo 2", "Avenir Next Rounded", "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
@@ -18,4 +65,78 @@ body {
   color: var(--foreground);
   font-family: "Open Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
+}
+
+.waitlist-glass-shell {
+  position: relative;
+  width: 100%;
+  padding: 1.6px;
+  border-radius: 9999px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.waitlist-glass-shell::before {
+  content: "";
+  position: absolute;
+  inset: -62%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(210, 103, 59, 0.22) 0deg,
+    rgba(210, 103, 59, 0.34) 120deg,
+    rgba(210, 103, 59, 0.25) 240deg,
+    rgba(210, 103, 59, 0.22) 360deg
+  );
+  filter: blur(8px);
+  pointer-events: none;
+  animation: waitlist-orbit 11s linear infinite;
+}
+
+.waitlist-glass-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: inherit;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  box-shadow:
+    0 0 18px rgba(210, 103, 59, 0.28),
+    inset 0 0 10px rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+.waitlist-glass-shell > input {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes waitlist-orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.typing-caret {
+  display: inline-block;
+  animation: caret-blink 1s steps(1, end) infinite;
+}
+
+.accent-orange {
+  color: #d97d59;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waitlist-glass-shell::before {
+    animation: none;
+  }
+
+  .typing-caret {
+    animation: none;
+  }
 }
